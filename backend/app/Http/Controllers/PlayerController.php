@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePlayerRequest;
 use App\Http\Requests\UpdatePlayerRequest;
+use App\Http\Resources\PlayerResource;
 use App\Models\Player;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class PlayerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResource
     {
-        //
+        return PlayerResource::collection(Player::all());
     }
 
     /**
