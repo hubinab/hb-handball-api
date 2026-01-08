@@ -15,7 +15,8 @@ class PlayerController extends Controller
      */
     public function index(): JsonResource
     {
-        return PlayerResource::collection(Player::all());
+        $players = Player::with("teams")->get();
+        return PlayerResource::collection($players);
     }
 
     /**
@@ -29,9 +30,10 @@ class PlayerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Player $player)
+    public function show(Player $player): JsonResource
     {
-        //
+        $player->load("teams");
+        return new PlayerResource($player);
     }
 
     /**

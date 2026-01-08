@@ -15,7 +15,8 @@ class TeamController extends Controller
      */
     public function index(): JsonResource
     {
-        return TeamResource::collection(Team::all());
+        $teams = Team::with("players")->get();
+        return TeamResource::collection($teams);
     }
 
     /**
@@ -29,9 +30,10 @@ class TeamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Team $team)
+    public function show(Team $team): JsonResource
     {
-        //
+        $team->load("players");
+        return new TeamResource($team);
     }
 
     /**

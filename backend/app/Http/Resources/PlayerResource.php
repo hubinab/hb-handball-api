@@ -14,6 +14,15 @@ class PlayerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            "id" => $this->id,
+            "name" => $this->name,
+            "number" => $this->number,
+            "position" => $this->position,
+            "natinality" => $this->nationality,
+            "date_of_birth" => $this->date_of_birth,
+            "height" => $this->height,
+            "teams" => TeamResource::collection($this->whenLoaded("teams")),
+        ];
     }
 }

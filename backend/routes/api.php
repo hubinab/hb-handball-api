@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Route;
 // })->middleware('auth:sanctum');
 Route::apiResource('/players', PlayerController::class)
     ->whereNumber("player")
-    ->only(["index"])
+    ->only(["index","show"])
 ;
 
 Route::apiResource('/teams', TeamController::class)
     ->whereNumber("team")
-    ->only(["index"])
+    ->only(["index", "show"])
 ;
