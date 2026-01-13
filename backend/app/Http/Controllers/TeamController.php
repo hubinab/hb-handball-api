@@ -15,7 +15,7 @@ class TeamController extends Controller
      */
     public function index(): JsonResource
     {
-        $teams = Team::with("players")->get();
+        $teams = Team::with("activePlayers")->get();
         return TeamResource::collection($teams);
     }
 
@@ -32,7 +32,7 @@ class TeamController extends Controller
      */
     public function show(Team $team): JsonResource
     {
-        $team->load("players");
+        $team->load("activePlayers");
         return new TeamResource($team);
     }
 

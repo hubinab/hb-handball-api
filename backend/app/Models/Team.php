@@ -9,7 +9,7 @@ class Team extends Model
 {
     public $timestamps = false;
 
-    public function players(): BelongsToMany
+    public function activePlayers(): BelongsToMany
     {
         return $this->belongsToMany(Player::class, "player_team")->wherePivotNull("to");
     }
